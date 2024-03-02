@@ -5,6 +5,11 @@ async function fetchRepoContents(name) {
 
   const response = await fetch(
     `https://api.github.com/repos/bradtraversy/${name}/contents`,
+    {
+      next:{
+          revalidate:60
+      }
+    }
   );
   const contents =  response.json();
   return contents;

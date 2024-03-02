@@ -6,7 +6,12 @@ import { resolve } from 'styled-jsx/css';
 
 async function fetchRepos() {
     const response = await fetch(
-        'https://api.github.com/users/bradtraversy/repos'
+        'https://api.github.com/users/bradtraversy/repos',
+        {
+            next:{
+                revalidate:60
+            }
+        }
     );
     await new Promise((resolve) =>setTimeout(resolve ,1000)) // 1 second delay
     const repos = await response.json()
